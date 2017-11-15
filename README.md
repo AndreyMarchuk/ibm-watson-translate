@@ -49,6 +49,9 @@ Read the [Docs](https://github.com/findbrok/laravel-watson-translate/wiki)
 
 ## Credits
 
+Adapted from Laravel to generic PHP by Andrey Marchuk.
+
+Original package by \
 [![Percy Mamedy](https://img.shields.io/badge/Author-Percy%20Mamedy-orange.svg)](https://twitter.com/PercyMamedy)
 
-Adapted from Laravel to generic PHP by Andrey Marchuk
+
