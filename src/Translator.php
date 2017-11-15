@@ -10,6 +10,25 @@ use FindBrok\WatsonTranslate\Contracts\TranslatorInterface;
  */
 class Translator extends AbstractTranslator implements TranslatorInterface
 {
+
+    /**
+     * Support passing config via array
+     */
+    protected $config = [];
+
+    function __construct($config = [])
+    {
+        $this->config = $config;
+    }
+
+    protected function config($val)
+    {
+        // override to use framework specific config loader
+        return isset($this->config[$val])
+            ? $this->config[$val]
+            : '';
+    }
+
     /**
      * Translates the input text from the source language to the target language.
      *

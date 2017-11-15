@@ -51,6 +51,14 @@ abstract class AbstractTranslator
         'Accept' => 'application/json',
     ];
 
+
+    protected $bridge;
+
+    public function __construct($bridge)
+    {
+        $this->bridge = $bridge;
+    }
+
     /**
      * Getting attributes.
      *
@@ -76,7 +84,7 @@ abstract class AbstractTranslator
     public function appendHeaders($headers = [])
     {
         //Append headers
-        $this->headers = collect($this->headers)->merge($headers)->all();
+        $this->headers = array_merge($this->headers, $headers);
         //Return calling object
         return $this;
     }
@@ -89,9 +97,9 @@ abstract class AbstractTranslator
     private function getHeaders()
     {
         //Return headers
-        return collect($this->headers)->merge([
-            'X-Watson-Learning-Opt-Out' => config('watson-translate.x_watson_learning_opt_out'),
-        ])->all();
+        return array_merge($this->headers, [
+            'X-Watson-Learning-Opt-Out' => $this->config('watson-translate.x_watson_learning_opt_out'),
+        ]);
     }
 
     /**
@@ -101,7 +109,7 @@ abstract class AbstractTranslator
      */
     public function makeBridge()
     {
-        return app()->make('WatsonTranslateBridge')->appendHeaders($this->getHeaders());
+        return $this->bridge->appendHeaders($this->getHeaders());
     }
 
     /**
@@ -165,9 +173,12 @@ abstract class AbstractTranslator
     {
         //Set the model id
         $this->modelId = ($modelName == '') ?
-                         config('watson-translate.models.default') :
-                         config('watson-translate.models.' . $modelName);
+                         $this->config('watson-translate.models.default') :
+                         $this->config('watson-translate.models.' . $modelName);
         //return the translator
         return $this;
     }
+
+    // override to support framework-specific config loading
+    abstract protected function config($val);
 }

@@ -1,17 +1,20 @@
 {
-    "name": "findbrok/laravel-watson-translate",
-    "description": "Use IBM Watson language translation service with laravel",
-    "keywords": ["laravel", "ibm", "watson", "translation"],
+    "name": "AndreyMarchuk/laravel-watson-translate",
+    "description": "Use IBM Watson language translation service with php",
+    "keywords": ["php", "ibm", "watson", "translation"],
     "license": "MIT",
     "authors": [
         {
             "name": "Percy Mamedy",
             "email": "percymamedy@gmail.com"
+        },
+        {
+            "name": "Andrey Marchuk",
+            "email": ""
         }
     ],
     "require": {
         "php": ">=5.5.0",
-        "laravel/framework": "5.0 - 5.3",
         "findbrok/php-watson-api-bridge": "1.0.*"
     },
     "require-dev": {
