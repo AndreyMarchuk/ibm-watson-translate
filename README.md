@@ -15,7 +15,7 @@ Begin by installing this package through Composer.
 ```php
 {
     "require": {
-        "AndreyMarchuk/laravel-watson-translate": "~1.0"
+        "AndreyMarchuk/ibm-watson-translate": "master"
     }
 }
 ```
