@@ -1,12 +1,5 @@
-# Laravel 5 IBM Watson Translate
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/5383ddb7-8c07-433e-98c0-0cda2eedba76/big.png)](https://insight.sensiolabs.com/projects/5383ddb7-8c07-433e-98c0-0cda2eedba76)
-
-[![StyleCI](https://styleci.io/repos/50762162/shield?style=flat)](https://styleci.io/repos/50762162)
-[![Build Status](https://travis-ci.org/findbrok/laravel-watson-translate.svg?branch=master)](https://travis-ci.org/findbrok/laravel-watson-translate)
-[![Latest Stable Version](https://poser.pugx.org/findbrok/laravel-watson-translate/v/stable)](https://packagist.org/packages/findbrok/laravel-watson-translate) 
-[![Total Downloads](https://poser.pugx.org/findbrok/laravel-watson-translate/downloads)](https://packagist.org/packages/findbrok/laravel-watson-translate) 
-[![Latest Unstable Version](https://poser.pugx.org/findbrok/laravel-watson-translate/v/unstable)](https://packagist.org/packages/findbrok/laravel-watson-translate) 
-[![License](https://poser.pugx.org/findbrok/laravel-watson-translate/license)](https://packagist.org/packages/findbrok/laravel-watson-translate)
+# IBM Watson Translate for PHP 
+(adapted from findbrok/laravel-watson-translate)
 
 This package provides a simple api to perform translations using the IBM Watson Language Translation service. 
 
@@ -22,34 +15,35 @@ Begin by installing this package through Composer.
 ```php
 {
     "require": {
-        "findbrok/laravel-watson-translate": "~1.0"
+        "AndreyMarchuk/laravel-watson-translate": "~1.0"
     }
 }
 ```
 
-Add the WatsonTranslateServiceProvider to your providers array
-
-```php
-// config/app.php
-
-'providers' => [
-    ...
-    FindBrok\WatsonTranslate\WatsonTranslateServiceProvider::class,
-];
-```
-
 ## Configuration
 
-First publish the configuration file
-
+Set your correct credentials and default configuration for using your IBM Watson Language translation service
 ```php
-php artisan vendor:publish --provider="FindBrok\WatsonTranslate\WatsonTranslateServiceProvider"
+$config = [
+    'watson-translate.service_credentials.username' => '',
+    'watson-translate.service_credentials.password' => '',
+    'watson-translate.api_endpoint' => 'https://gateway.watsonplatform.net/language-translator/api/',
+    'watson-translate.x_watson_learning_opt_out' => false,
+    
+    // default model name
+    'watson-translate.models.default' => 'en-fr',
+    
+    // custom model names (optional)
+    //'watson-translate.models.[model-name]' => '',
+];
+
 ```
 
-Set your correct credentials and default configuration for using your IBM Watson Language translation service 
-> config/watson-translate.php
-
 ## Usage
+
+```php
+$translate = new WatsonTranslateService($config);
+```
 
 Read the [Docs](https://github.com/findbrok/laravel-watson-translate/wiki)
 
@@ -57,6 +51,4 @@ Read the [Docs](https://github.com/findbrok/laravel-watson-translate/wiki)
 
 [![Percy Mamedy](https://img.shields.io/badge/Author-Percy%20Mamedy-orange.svg)](https://twitter.com/PercyMamedy)
 
-Twitter: [@PercyMamedy](https://twitter.com/PercyMamedy)
-<br/>
-GitHub: [percymamedy](https://github.com/percymamedy)
+Adapted from Laravel to generic PHP by Andrey Marchuk
